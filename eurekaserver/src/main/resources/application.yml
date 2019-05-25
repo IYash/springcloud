@@ -11,10 +11,10 @@ spring:
 eureka:
   server:
     peer-node-read-timeout-ms: 3000
-    enable-self-preservation: true
+    enable-self-preservation: false #是否开启自我保护，注册中心在丢失客户端时不会将服务从注册中心删除掉
   instance:
-    prefer-ip-address: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true #是否以ip注册到注册中心，默认是hostname
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #注册限制的实例id
   client:
     registerWithEureka: true
     fetchRegistry: false

@@ -16,6 +16,9 @@
     </parent>
     <modules>
         <module>eurekaserver</module>
+        <module>eurekaclient</module>
+        <module>gateway</module>
+        <module>feign</module>
     </modules>
     <dependencyManagement>
         <dependencies>
