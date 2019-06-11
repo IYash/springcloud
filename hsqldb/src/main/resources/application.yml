@@ -1,0 +1,55 @@
+server:
+  port: 8764
+context:
+  initializer:
+    classes: com.clnn.hsqldb.component.MyApplicationContextInitializer
+spring:
+  application:
+    name: hsqlserver
+  cloud:
+    client:
+      ip-address: 127.0.0.1
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      filters: stat
+    url: jdbc:hsqldb:mem:aname
+    driver-class-name: org.hsqldb.jdbcDriver
+    username: sa
+    password:
+    validation-query: SELECT 1 FROM DUAL
+innersql:
+  driver: org.hsqldb.jdbcDriver
+  sourceFile: classpath:CreateDB.sql
+  url: jdbc:hsqldb:mem:aname
+  username: sa
+  password:
+
+#使用xml文件时配置
+#mybatis:
+#  mapper-locations: com/clnn/hsqldb/mapper/*.xml
+
+logging:
+  level:
+    org.springframework.http.server.reactive: debug
+    org.springframework.web.reactive: debug
+    reactor.ipc.netty: debug
+eureka:
+  instance:
+    prefer-ip-address: true #是否以ip注册到注册中心，默认是hostname
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} #注册限制的实例id
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/ #指定注册中心地址
+

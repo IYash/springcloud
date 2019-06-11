@@ -19,6 +19,7 @@
         <module>eurekaclient</module>
         <module>gateway</module>
         <module>feign</module>
+        <module>hsqldb</module>
     </modules>
     <dependencyManagement>
         <dependencies>
