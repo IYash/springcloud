@@ -20,6 +20,7 @@
         <module>gateway</module>
         <module>feign</module>
         <module>hsqldb</module>
+        <module>filetool</module>
     </modules>
     <dependencyManagement>
         <dependencies>
