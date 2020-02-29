@@ -21,6 +21,12 @@
         <module>feign</module>
         <module>hsqldb</module>
         <module>filetool</module>
+        <module>pattern</module>
+        <module>shiro</module>
+        <module>ssecurity</module>
+        <module>cuMail</module>
+        <module>cuStarter</module>
+        <module>elastic</module>
     </modules>
     <dependencyManagement>
         <dependencies>

@@ -1,8 +1,18 @@
 package com.clnn.eurekaclient.controller;
 
+import com.clnn.eurekaclient.service.GroovyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Map;
 
 /**
  * 吐槽：
@@ -17,8 +27,41 @@ public class HelloController {
     @Value("${server.port}")
     private int port;
 
+    @Autowired
+    private GroovyService groovyService;
     @GetMapping("index")
     public String index(){
         return "hello world,port:"+port;
+    }
+
+
+    @PostMapping("param")
+    public String param(HttpServletRequest request, @RequestBody Map<String, String> params){
+        String tenantHead = request.getHeader("tenantCode");
+        System.out.println(tenantHead);
+        StringBuilder sb = new StringBuilder(100);
+        params.entrySet().stream().forEach(entry->sb.append(entry.getKey()).append(entry.getValue()).append(";"));
+        return sb.toString();
+    }
+
+    @PostMapping("groovyS")
+    //直接从request获取参数
+    public void groovy(HttpServletRequest request) throws Exception{
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(request.getInputStream()));
+            String tmp;
+            StringBuilder sb = new StringBuilder();
+            while ((tmp = reader.readLine()) != null) {
+                sb.append(tmp);
+                System.out.println(tmp);
+            }
+            groovyService.initial2Groovy(sb.toString());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        } finally {
+            reader.close();
+        }
+
     }
 }

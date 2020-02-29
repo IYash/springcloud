@@ -10,7 +10,7 @@ spring:
     active: dev
 eureka:
   instance:
-    prefer-ip-address: true #是否以ip注册到注册中心，默认是hostname
+    prefer-ip-address: false #是否以ip注册到注册中心，默认是hostname
     instance-id: ${spring.cloud.client.ip-address}:${server.port} #注册限制的实例id
   client:
     serviceUrl:

@@ -19,10 +19,10 @@ public class FeignApplication {
     @Bean
     public ServletRegistrationBean getServlet(){
         HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet);
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(streamServlet );
         registrationBean.setLoadOnStartup(1);
         registrationBean.addUrlMappings("/hystrix.stream");
-        registrationBean.setName("HystrixMetricStreamServlet");
-        return  registrationBean;
+        registrationBean.setName("HystrixMetricsStreamServlet");
+        return registrationBean;
     }
 }

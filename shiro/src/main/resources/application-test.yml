@@ -1,0 +1,2 @@
+#用于测试非spring环境自定义参数获取
+redisPrefix: custom

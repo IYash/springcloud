@@ -1,0 +1,11 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: mailserver
+  mail:
+    host: smtp.163.com
+    port: 25
+    username: *****@163.com
+    password: ******
+
