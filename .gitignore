@@ -1,0 +1,18 @@
+/target
+#eclipse ignore
+.settings/
+.project
+.classpatch
+.factorypath
+settings.json
+
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+*.idea/
+*.iml
+/.classpath
+/bin/
+.idea/
