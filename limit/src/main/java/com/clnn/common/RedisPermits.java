@@ -1,4 +1,4 @@
-package com.person.limit;
+package com.clnn.common;
 
 import lombok.Data;
 

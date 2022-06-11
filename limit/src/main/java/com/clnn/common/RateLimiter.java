@@ -1,6 +1,6 @@
-package com.person.limit;
+package com.clnn.common;
 
-import com.person.zookeeper.DistributedLock;
+import com.clnn.config.DistributedLock;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,5 +26,24 @@ public class RateLimiter {
      * 最大存储maxBurstSeconds秒生成的令牌
      */
     private Integer maxBurstSeconds;
-    private DistributedLock syncLock;//
+    /**
+     * 分布式同步锁
+     */
+    private DistributedLock syncLock;
+
+    public RateLimiter(String key,Double permitsPerSecond,Integer maxBurstSeconds,DistributedLock syncLock){
+        this.key = key;
+        this.lockKey = "DISTRIBUTED_LOCK:"+key;
+        this.permitsPerSecond = permitsPerSecond;
+        this.maxBurstSeconds = maxBurstSeconds;
+        this.syncLock = syncLock;
+    }
+
+    /**
+     * 生成并存储默认令牌桶
+     * @return
+     */
+    private RedisPermits putDefaultPermits(){
+        return null;
+    }
 }
